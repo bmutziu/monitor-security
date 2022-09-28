@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: tracee
+  namespace: tracee-system
+    #  labels:
+    # required to match podMonitorSelector in the Prometheus config
+    #    release: prom
+spec:
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#podmetricsendpoint
+  podMetricsEndpoints:
+  - interval: 15s
+    honorLabels: true
+    path: /metrics
+    # containerPort must be named in the pod spec, integer port number will not work!
+    port: metrics-rules
+    scheme: http
+  - interval: 15s
+    honorLabels: true
+    path: /metrics
+    # containerPort must be named in the pod spec, integer port number will not work!
+    port: metrics-ebpf
+    scheme: http
+  selector:
+    # which pods to match
+    matchLabels:
+      app.kubernetes.io/name: tracee

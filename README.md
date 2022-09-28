@@ -50,16 +50,16 @@ helm install trivy-operator aqua/trivy-operator \
   --namespace trivy-system \
   --create-namespace \
   --set="trivy.ignoreUnfixed=true" \
-  --version 0.1.3
+  --version 0.3.0
 ```
-Make sure to cross-check the updated installation incl. the latest versio  of the operator in the docs: https://aquasecurity.github.io/trivy-operator/latest/operator/installation/helm/
+Make sure to cross-check the updated installation incl. the latest version  of the operator in the docs: https://aquasecurity.github.io/trivy-operator/latest/operator/installation/helm/
 
 Install the Trivy exporter -- note that here we are still using the old Starboard exporter:
 
 ```
 helm repo add giantswarm https://giantswarm.github.io/giantswarm-catalog
 helm repo update
-helm upgrade -i trivy-exporter --namespace <trivy namespace> giantswarm/starboard-exporter
+helm upgrade -i trivy-exporter --namespace trivy-system giantswarm/starboard-exporter
 ```
 
 Install tracee to monitor your cluster:

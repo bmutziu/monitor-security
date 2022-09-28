@@ -1,4 +1,6 @@
 config:
-  serverPort: 80
+  serverPort: 3101
   clients:
     - url: http://loki-loki-distributed-gateway/loki/api/v1/push
+image:
+  tag: latest@sha256:efb6af378adfc4dba37967c1b5752fce34bfd95b05f6d3c572048e655fd42bb4
